@@ -86,6 +86,7 @@ class Channel(AWSObject):
     resource_type = "AWS::MediaTailor::Channel"
 
     props: PropsDictType = {
+        "Audiences": ([str], False),
         "ChannelName": (str, True),
         "FillerSlate": (SlateSource, False),
         "LogConfiguration": (LogConfigurationForChannel, False),
@@ -143,6 +144,7 @@ class AvailSuppression(AWSProperty):
     """
 
     props: PropsDictType = {
+        "FillPolicy": (str, False),
         "Mode": (str, False),
         "Value": (str, False),
     }

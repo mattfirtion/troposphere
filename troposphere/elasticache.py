@@ -156,7 +156,7 @@ class GlobalReplicationGroup(AWSObject):
 
 class ParameterGroup(AWSObject):
     """
-    `ParameterGroup <http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-parameter-group.html>`__
+    `ParameterGroup <http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-parametergroup.html>`__
     """
 
     resource_type = "AWS::ElastiCache::ParameterGroup"
@@ -269,7 +269,8 @@ class DataStorage(AWSProperty):
     """
 
     props: PropsDictType = {
-        "Maximum": (integer, True),
+        "Maximum": (integer, False),
+        "Minimum": (integer, False),
         "Unit": (str, True),
     }
 
@@ -280,7 +281,8 @@ class ECPUPerSecond(AWSProperty):
     """
 
     props: PropsDictType = {
-        "Maximum": (integer, True),
+        "Maximum": (integer, False),
+        "Minimum": (integer, False),
     }
 
 

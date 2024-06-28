@@ -25,6 +25,18 @@ from .validators.codebuild import (
 )
 
 
+class VpcConfig(AWSProperty):
+    """
+    `VpcConfig <http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-vpcconfig.html>`__
+    """
+
+    props: PropsDictType = {
+        "SecurityGroupIds": ([str], False),
+        "Subnets": ([str], False),
+        "VpcId": (str, False),
+    }
+
+
 class Fleet(AWSObject):
     """
     `Fleet <http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-fleet.html>`__
@@ -36,7 +48,10 @@ class Fleet(AWSObject):
         "BaseCapacity": (integer, False),
         "ComputeType": (str, False),
         "EnvironmentType": (str, False),
+        "FleetServiceRole": (str, False),
+        "FleetVpcConfig": (VpcConfig, False),
         "Name": (str, False),
+        "OverflowBehavior": (str, False),
         "Tags": (Tags, False),
     }
 
@@ -219,6 +234,16 @@ class ProjectSourceVersion(AWSProperty):
     }
 
 
+class ScopeConfiguration(AWSProperty):
+    """
+    `ScopeConfiguration <http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-scopeconfiguration.html>`__
+    """
+
+    props: PropsDictType = {
+        "Name": (str, True),
+    }
+
+
 class ProjectTriggers(AWSProperty):
     """
     `ProjectTriggers <http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projecttriggers.html>`__
@@ -227,6 +252,7 @@ class ProjectTriggers(AWSProperty):
     props: PropsDictType = {
         "BuildType": (str, False),
         "FilterGroups": (list, False),
+        "ScopeConfiguration": (ScopeConfiguration, False),
         "Webhook": (boolean, False),
     }
 
@@ -289,18 +315,6 @@ class Source(AWSProperty):
 
     def validate(self):
         validate_source(self)
-
-
-class VpcConfig(AWSProperty):
-    """
-    `VpcConfig <http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-vpcconfig.html>`__
-    """
-
-    props: PropsDictType = {
-        "SecurityGroupIds": ([str], False),
-        "Subnets": ([str], False),
-        "VpcId": (str, False),
-    }
 
 
 class Project(AWSObject):
