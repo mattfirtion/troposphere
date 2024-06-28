@@ -226,6 +226,7 @@ class JdbcTarget(AWSProperty):
 
     props: PropsDictType = {
         "ConnectionName": (str, False),
+        "EnableAdditionalMetadata": ([str], False),
         "Exclusions": ([str], False),
         "Path": (str, False),
     }
@@ -547,6 +548,7 @@ class Job(AWSObject):
         "ExecutionProperty": (ExecutionProperty, False),
         "GlueVersion": (str, False),
         "LogUri": (str, False),
+        "MaintenanceWindow": (str, False),
         "MaxCapacity": (double, False),
         "MaxRetries": (double, False),
         "Name": (str, False),

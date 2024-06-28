@@ -34,15 +34,18 @@ class CustomDBEngineVersion(AWSObject):
     resource_type = "AWS::RDS::CustomDBEngineVersion"
 
     props: PropsDictType = {
-        "DatabaseInstallationFilesS3BucketName": (str, True),
+        "DatabaseInstallationFilesS3BucketName": (str, False),
         "DatabaseInstallationFilesS3Prefix": (str, False),
         "Description": (str, False),
         "Engine": (str, True),
         "EngineVersion": (str, True),
+        "ImageId": (str, False),
         "KMSKeyId": (str, False),
         "Manifest": (str, False),
+        "SourceCustomDbEngineVersionIdentifier": (str, False),
         "Status": (str, False),
         "Tags": (Tags, False),
+        "UseAwsProvidedLatestImage": (boolean, False),
     }
 
 
@@ -123,7 +126,9 @@ class DBCluster(AWSObject):
         "EnableGlobalWriteForwarding": (boolean, False),
         "EnableHttpEndpoint": (boolean, False),
         "EnableIAMDatabaseAuthentication": (boolean, False),
+        "EnableLocalWriteForwarding": (boolean, False),
         "Engine": (validate_engine, False),
+        "EngineLifecycleSupport": (str, False),
         "EngineMode": (validate_engine_mode, False),
         "EngineVersion": (str, False),
         "GlobalClusterIdentifier": (str, False),
@@ -232,6 +237,7 @@ class DBInstance(AWSObject):
         "AllowMajorVersionUpgrade": (boolean, False),
         "AssociatedRoles": ([DBInstanceRole], False),
         "AutoMinorVersionUpgrade": (boolean, False),
+        "AutomaticBackupReplicationKmsKeyId": (str, False),
         "AutomaticBackupReplicationRegion": (str, False),
         "AvailabilityZone": (str, False),
         "BackupRetentionPeriod": (validate_backup_retention_period, False),
@@ -264,6 +270,7 @@ class DBInstance(AWSObject):
         "EnablePerformanceInsights": (boolean, False),
         "Endpoint": (Endpoint, False),
         "Engine": (validate_engine, False),
+        "EngineLifecycleSupport": (str, False),
         "EngineVersion": (str, False),
         "Iops": (validate_iops, False),
         "KmsKeyId": (str, False),
@@ -496,6 +503,7 @@ class GlobalCluster(AWSObject):
     props: PropsDictType = {
         "DeletionProtection": (boolean, False),
         "Engine": (str, False),
+        "EngineLifecycleSupport": (str, False),
         "EngineVersion": (str, False),
         "GlobalClusterIdentifier": (str, False),
         "SourceDBClusterIdentifier": (str, False),
